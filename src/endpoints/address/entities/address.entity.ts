@@ -38,15 +38,15 @@ export class AddressEntity {
     @IsNotEmpty({ message: 'Country is required' })
     country: string;
 
-    @Column({ type: 'timestamp' })
-    @IsDate()
-    @Type(() => Date) // Permite transformar strings a fechas automáticamente
-    created_at: Date;
-
-    @Column({ type: 'timestamp' })
-    @IsDate()
-    @Type(() => Date)
-    updated_at: Date;
+    @IsOptional()
+    @IsDate({ message: 'La fecha de creación debe ser una fecha válida.' })
+    @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+    created_at?: Date;
+  
+    @IsOptional()
+    @IsDate({ message: 'La fecha de actualización debe ser una fecha válida.' })
+    @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP' })
+    updated_at?: Date;
 
     @Column({ default: true })
     @IsBoolean()

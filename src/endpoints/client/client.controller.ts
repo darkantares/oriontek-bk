@@ -14,7 +14,10 @@ export class ClientController {
 
   @Get()
   async findAll() {
-    return await this.clientService.findAll();
+    const data = await this.clientService.findAll();
+    console.log(data);
+    
+    return data;
   }
 
   @Get(':id')

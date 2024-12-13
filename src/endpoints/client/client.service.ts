@@ -16,8 +16,7 @@ export class ClientService {
     private readonly addressRepository: Repository<AddressEntity>,
   ) {}
 
-  async create(createClientDto: CreateClientDto): Promise<ClientEntity> {
-    
+  async create(createClientDto: CreateClientDto): Promise<ClientEntity> {    
     const client = this.clientRepository.create(createClientDto);
     const savedClient = await this.clientRepository.save(client);
 
@@ -32,7 +31,8 @@ export class ClientService {
     await this.addressRepository.save(addresses);
 
     savedClient.addresses = addresses;
-    return savedClient;
+    
+    return await this.findOne(savedClient.id);
   }
 
   async findAll(): Promise<ClientEntity[]> {
