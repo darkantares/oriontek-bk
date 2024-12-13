@@ -19,6 +19,9 @@ export class ClientEntity {
   @Column()
   email: string;
 
+  @Column({default: true})
+  is_active: boolean;
+
   @IsPhoneNumber(null, { message: 'El número de teléfono no es válido.' })
   @Column()
   phone_number: string;

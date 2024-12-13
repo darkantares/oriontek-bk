@@ -13,12 +13,7 @@ export class AddressEntity {
     @IsString()
     @IsNotEmpty({ message: 'Street address is required' })
     street_address: string;
-
-    @Column({ nullable: true })
-    @IsOptional()
-    @IsEnum(['residential', 'commercial', 'other'], { message: 'Type must be residential, commercial, or other' })
-    type?: "residential" | "commercial" | "other";
-
+ 
     @Column()
     @IsString()
     @IsNotEmpty({ message: 'City is required' })

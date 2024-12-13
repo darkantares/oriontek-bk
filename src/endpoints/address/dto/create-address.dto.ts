@@ -6,10 +6,6 @@ export class CreateAddressDto {
     @IsNotEmpty({ message: 'Street address is required' })
     street_address: string;
 
-    @IsOptional()
-    @IsEnum(['residential', 'commercial', 'other'], { message: 'Type must be residential, commercial, or other' })
-    type?: "residential" | "commercial" | "other";
-
     @IsString()
     @IsNotEmpty({ message: 'City is required' })
     city: string;

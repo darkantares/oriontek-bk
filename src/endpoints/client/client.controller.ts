@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Put } from '@nestjs/common';
 import { ClientService } from './client.service';
 import { CreateClientDto } from './dto/create-client.dto';
 import { UpdateClientDto } from './dto/update-client.dto';
@@ -15,8 +15,7 @@ export class ClientController {
   @Get()
   async findAll() {
     const data = await this.clientService.findAll();
-    console.log(data);
-    
+    console.log(data);    
     return data;
   }
 
@@ -25,13 +24,14 @@ export class ClientController {
     return await this.clientService.findOne(id);
   }
 
-  @Patch(':id')
+  @Put(':id')
   async update(@Param('id') id: string, @Body() updateClientDto: UpdateClientDto) {
     return await this.clientService.update(id, updateClientDto);
   }
 
   @Delete(':id')
   async remove(@Param('id') id: string) {
+    console.log(id);    
     return await this.clientService.remove(id);
   }
 }
